@@ -1,0 +1,30 @@
+<h3 class="text-center">Bank Statement</h3>
+<table class="text-center w-100">
+  <thead>
+    <th>Sr.no</th>
+    <th>Date</th>
+    <th>recipient name</th>
+    <th>Withdraw</th>
+    <th>Credit</th>
+    <th>Balance</th>
+  </thead>
+  <tbody>
+    <% total_balance = 0 %>
+    <% @transactions.each_with_index do |transaction,index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
+        <td class="text-center"><%= transaction.receiver_id.present? ? Customer.find_receiver(transaction.receiver_id) : "-" %></td>
+        <td><%= transaction.action == "withdraw" ? transaction.amount : "-" %></td>
+        <td><%= transaction.action == "deposit" ? transaction.amount : "-" %></td>
+        <td>
+          <% if transaction.action == "deposit" %>
+            <%= total_balance = total_balance + transaction.amount %> Rs
+          <% elsif transaction.action == "withdraw" %>
+            <%= total_balance = total_balance - transaction.amount %> Rs
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

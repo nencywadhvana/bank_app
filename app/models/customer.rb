@@ -14,18 +14,23 @@ class Customer < ApplicationRecord
     self.update(account_number: SecureRandom.base58(14))
   end
 
-  def self.deposit(customer, balance)
-    customer.account_balance += balance.to_f
-    customer.save!
+  def self.deposit(customer, params,receiver=nil)
+    customer.account_balance += params[:amount].to_f
+    if customer.save!
+      customer.account_transactions.create(amount: params[:amount],action: 'deposit', receiver_id:receiver)
+    end
   end
 
-  def self.withdraw(customer, balance)
-    customer.account_balance -= balance.to_f
+
+  def self.withdraw(customer, params,receiver=nil)
+    customer.account_balance -= params[:amount].to_f
     if customer.save!
-      return true
-    else 
-      return false
+      customer.account_transactions.create(amount: params[:amount],action: 'withdraw', receiver_id:receiver)
     end
+  end
+
+  def self.find_receiver(id)
+    Customer.find_by_id(id)&.first_name
   end
 
 end

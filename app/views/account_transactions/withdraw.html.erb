@@ -1,6 +1,8 @@
-<%= form_for :account_transaction, url: update_account_account_transactions_path, method: :put do |f| %>
-  Please Enter Amount : <%= f.text_field :amount %><br />
-  <%= f.hidden_field :action, :value => 'withdraw' %><br />
+<div class="container mt-5 ">
+  <%= form_for :account_transaction, url: update_account_account_transactions_path, method: :put do |f| %>
+    Please Enter Amount : <%= f.text_field :amount %><br />
+    <%= f.hidden_field :action, :value => 'withdraw' %><br />
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit 'save' %>
+  <% end %>
+</div>

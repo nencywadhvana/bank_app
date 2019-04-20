@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'dashboard#index'
   devise_for :customers
-  resources :account_transactions, only: [:show] do
+  resources :account_transactions, only: [:show,:index] do
     collection do
       get 'deposit'
       get 'withdraw'

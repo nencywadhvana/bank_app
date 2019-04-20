@@ -1,2 +1,3 @@
-<h1>AccountTransactions#show</h1>
-<p>Find me in app/views/account_transactions/show.html.erb</p>
+<h6 class="mt-5 ml-4"><b>Customer: </b><%= current_customer.first_name.titleize + current_customer.last_name.titleize %></h6>
+<h6 class="ml-4"><b>Account No: </b><%= current_customer.account_number %></h6>
+<h6 class="ml-4"><b>Total Balance: </b><%= current_customer.account_balance %></h6>
