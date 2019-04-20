@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     collection do
       get 'deposit'
       get 'withdraw'
-      get 'transaction'
+      get 'transfer'
       put 'update_account'
     end
   end

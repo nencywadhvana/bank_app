@@ -1,10 +1,35 @@
-<h6>Welcome <%= current_customer.email %> !</h6>
-      
-<div class="block_list">
-  <p>Deposite</p>
+<% flash.each do |key, value| %>
+  <div class='<%= "alert alert-#{key} alert-dismissible" %>'>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= value %>
+  </div>
+<% end %>  
+<br>  
+<div class="row">  
+  <%= link_to deposit_account_transactions_path do %>
+    <div class="block_list">
+      <p class="text-center m-2">Deposite</p>
+    </div>
+  <% end %>
+  <br>
+  <%= link_to withdraw_account_transactions_path do %>
+    <div class="block_list">
+      <p class="text-center m-2">Withdraw</p>
+    </div>
+  <% end %>
 </div>
-<br>
 
-<div class="block_list">
-  <p>Withdraw</p>
+<br>
+<div class="row">  
+  <%= link_to account_transaction_path(current_customer) do %>
+    <div class="block_list">
+      <p class="text-center m-2">View Balance</p>
+    </div>
+  <% end %>
+  <br>
+  <%= link_to transfer_account_transactions_path do %>
+    <div class="block_list">
+      <p class="text-center m-2">Transfer</p>
+    </div>
+  <% end %>
 </div>

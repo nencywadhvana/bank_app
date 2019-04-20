@@ -1,2 +1,6 @@
-<h1>AccountTransactions#withdraw</h1>
-<p>Find me in app/views/account_transactions/withdraw.html.erb</p>
+<%= form_for :account_transaction, url: update_account_account_transactions_path, method: :put do |f| %>
+  Please Enter Amount : <%= f.text_field :amount %><br />
+  <%= f.hidden_field :action, :value => 'withdraw' %><br />
+
+  <%= f.submit %>
+<% end %>

@@ -14,4 +14,18 @@ class Customer < ApplicationRecord
     self.update(account_number: SecureRandom.base58(14))
   end
 
+  def self.deposit(customer, balance)
+    customer.account_balance += balance.to_f
+    customer.save!
+  end
+
+  def self.withdraw(customer, balance)
+    customer.account_balance -= balance.to_f
+    if customer.save!
+      return true
+    else 
+      return false
+    end
+  end
+
 end

@@ -9,6 +9,7 @@
         <%= link_to 'Home', root_path, class: "nav-link"  %>
       </li>
     </ul>
+      <span>Welcome <%= current_customer.email %> ! </span>
      <%= link_to "Logout", destroy_customer_session_path, method: :delete, class: "text-body" %>
   </div>
 </nav>
