@@ -3,10 +3,11 @@ class CreateAccountTransactions < ActiveRecord::Migration[5.2]
     create_table :account_transactions do |t|
       t.string :action
       t.float :amount
-      t.references :customer, foreign_key: true
-      t.integer :receiver_id
-
+      t.integer :customer_id, index: true #add columns as integer
+      t.integer :receiver_id, index: true #add columns as integer
       t.timestamps
     end
+    add_foreign_key :account_transactions, :customers, column: :receiver_id
+    add_foreign_key :account_transactions, :customers, column: :customer_id
   end
 end

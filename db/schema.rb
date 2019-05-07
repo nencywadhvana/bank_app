@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 2019_04_20_123845) do
   create_table "account_transactions", force: :cascade do |t|
     t.string "action"
     t.float "amount"
-    t.bigint "customer_id"
+    t.integer "customer_id"
     t.integer "receiver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_account_transactions_on_customer_id"
+    t.index ["receiver_id"], name: "index_account_transactions_on_receiver_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -45,4 +46,5 @@ ActiveRecord::Schema.define(version: 2019_04_20_123845) do
   end
 
   add_foreign_key "account_transactions", "customers"
+  add_foreign_key "account_transactions", "customers", column: "receiver_id"
 end

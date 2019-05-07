@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
   
   has_many :account_transactions
 
+
   after_create :get_account_number
 
   private
@@ -24,13 +25,7 @@ class Customer < ApplicationRecord
 
   def self.withdraw(customer, params,receiver=nil)
     customer.account_balance -= params[:amount].to_f
-    if customer.save!
-      customer.account_transactions.create(amount: params[:amount],action: 'withdraw', receiver_id:receiver)
-    end
+    customer.save! && customer.account_transactions.create(amount: params[:amount],action: 'withdraw', receiver_id:receiver)
   end
-
-  def self.find_receiver(id)
-    Customer.find_by_id(id)&.first_name
-  end
-
+ 
 end

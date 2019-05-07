@@ -14,7 +14,7 @@
       <tr>
         <td><%= index+1 %></td>
         <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
-        <td class="text-center"><%= transaction.receiver_id.present? ? Customer.find_receiver(transaction.receiver_id) : "-" %></td>
+        <td class="text-center"><%= transaction&.receiver&.first_name %></td>
         <td><%= transaction.action == "withdraw" ? transaction.amount : "-" %></td>
         <td><%= transaction.action == "deposit" ? transaction.amount : "-" %></td>
         <td>

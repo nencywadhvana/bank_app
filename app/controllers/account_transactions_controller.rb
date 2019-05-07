@@ -44,7 +44,7 @@ class AccountTransactionsController < ApplicationController
   private
 
   def account_transactions_params
-    params.require(:account_transaction).permit(:amount, :customer_id, :action, :receiver_id)
+    params.require(:account_transaction).permit(:amount, :customer_id, :action)
   end
 
 end
